@@ -6,7 +6,7 @@ WORKDIR /app
 # Copier le fichier settings.xml dans le répertoire .m2 du conteneur
 
 # Copier le fichier JAR de l'application Spring Boot dans le conteneur
-COPY target/maven-wrapper.jar /app/application.jar
+COPY target/react-spring-boot-0.0.1-SNAPSHOT.jar /app/application.jar
 
 
 # Exposer le port sur lequel l'application Spring Boot fonctionne (par exemple, 8080)
