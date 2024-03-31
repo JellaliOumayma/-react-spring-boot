@@ -10,31 +10,29 @@ jobs:
   steps:
   - checkout: self
 
-  - task: Maven@3
+  - task: Maven@4
     inputs:
       mavenPomFile: 'pom.xml'
       goals: 'clean install'
       publishJUnitResults: true
     displayName: 'Build Java Application'
-  
 
- # Docker - Login to Docker Hub using Service Connection
   - task: Docker@2
     displayName: 'Docker Login to Docker Hub'
     inputs:
       command: 'login'
-      containerRegistry: 'dockerHub' 
- 
+      containerRegistry: 'Docker' 
+
   - task: Docker@2
     inputs:
-      containerRegistry: 'dockerHub'
+      containerRegistry: 'Docker'
       repository: 'oumymajellali/backend'
       command: 'buildAndPush'
       Dockerfile: 'dockerfile'
-   
+
   - task: Docker@2
     inputs:
-      containerRegistry: 'dockerHub'
+      containerRegistry: 'Docker'
       repository: 'oumymajellali/frontend'
       command: 'buildAndPush'
-      Dockerfile: 'frontend/dockerfile' 
+      Dockerfile: 'frontend/dockerfile'
